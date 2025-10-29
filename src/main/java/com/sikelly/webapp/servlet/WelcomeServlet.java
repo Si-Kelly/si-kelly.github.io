@@ -17,6 +17,10 @@ public class WelcomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        // Set character encoding for proper handling of non-ASCII characters
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
         // Get the name parameter from the request, default to "Guest"
         String name = request.getParameter("name");
         if (name == null || name.trim().isEmpty()) {

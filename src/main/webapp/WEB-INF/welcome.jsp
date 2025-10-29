@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.net.URLEncoder" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +12,8 @@
 <body>
     <div class="container">
         <header>
-            <h1>Welcome, <%= request.getAttribute("userName") %>!</h1>
-            <p class="subtitle"><%= request.getAttribute("message") %></p>
+            <h1>Welcome, <c:out value="${userName}"/>!</h1>
+            <p class="subtitle"><c:out value="${message}"/></p>
         </header>
 
         <main>
@@ -20,7 +22,7 @@
                 <table class="info-table">
                     <tr>
                         <td><strong>User Name:</strong></td>
-                        <td><%= request.getAttribute("userName") %></td>
+                        <td><c:out value="${userName}"/></td>
                     </tr>
                     <tr>
                         <td><strong>Session ID:</strong></td>
@@ -43,7 +45,7 @@
 
             <div class="button-group">
                 <a href="<%= request.getContextPath() %>/" class="btn">Back to Home</a>
-                <a href="<%= request.getContextPath() %>/welcome?name=<%= request.getAttribute("userName") %>" class="btn btn-secondary">Refresh</a>
+                <a href="<%= request.getContextPath() %>/welcome?name=<%= URLEncoder.encode((String) request.getAttribute("userName"), "UTF-8") %>" class="btn btn-secondary">Refresh</a>
             </div>
         </main>
 
